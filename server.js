@@ -1,41 +1,31 @@
 const { ApolloServer, gql } = require('apollo-server');
+const mongoose = require('mongoose');
+const fs = require('fs');
+const path = require('path');
 
-const todos = [
-  { task: 'Wash car', completed: false },
-  { task: 'Clean Room', completed: true },
-];
+const filePath = path.join(__dirname, 'typeDefs.gql');
+const typeDefs = fs.readFileSync(filePath, 'utf-8');
+const resolvers = require('./resolvers');
 
-const typeDefs = gql`
-  type Query {
-    getTodos: [Todo]
-  }
+require('dotenv').config();
+const User = require('./models/User.js');
+const Post = require('./models/Post.js');
 
-  type Todo {
-    task: String
-    completed: Boolean
-  }
-
-  type Mutation {
-    addTodo(task: String, completed:Boolean): Todo
-  }
-`;
-
-const resolvers = {
-  Query: {
-    getTodos: () => todos
-  },
-  Mutation: {
-    addTodo: (_, { task, completed }) => {
-      const todo = { task, completed };
-      todos.push(todo);
-      return todo;
-    }
-  }
-};
+// Connect to mongoose
+mongoose
+  .connect(process.env.MONGO_URI, { useNewUrlParser: true })
+  .then(() => console.log('DB Connected!'))
+  .catch(err => console.error(err));
+// Set userCreateIndex
+mongoose.set('useCreateIndex', true);
 
 const server = new ApolloServer({
   typeDefs,
-  resolvers
+  resolvers,
+  context: {
+    User,
+    Post
+  }
 });
 
 server.listen().then(({ url }) => {
