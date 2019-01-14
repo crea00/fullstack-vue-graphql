@@ -5,6 +5,7 @@ const path = require('path');
 
 const filePath = path.join(__dirname, 'typeDefs.gql');
 const typeDefs = fs.readFileSync(filePath, 'utf-8');
+const resolvers = require('./resolvers');
 
 require('dotenv').config();
 const User = require('./models/User.js');
@@ -20,6 +21,7 @@ mongoose.set('useCreateIndex', true);
 
 const server = new ApolloServer({
   typeDefs,
+  resolvers,
   context: {
     User,
     Post
