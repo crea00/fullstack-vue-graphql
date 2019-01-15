@@ -1,7 +1,7 @@
 <template>
   <v-app style="background: #E3E3EE">
     <!-- Side Navbar -->
-    <v-navigation-drawer app tempary fixed v-model="sideNav">
+    <v-navigation-drawer app temporary fixed v-model="sideNav">
       <v-toolbar color="accent" dark flat>
         <v-toolbar-side-icon @click="toggleSideNav"></v-toolbar-side-icon>
         <router-link to="/" tag="span" style="cursor: pointer">
@@ -54,7 +54,9 @@
     <!-- App Content -->
     <main>
       <v-container class="mt-4">
-        <router-view/>
+        <transition name="fade">
+          <router-view/>
+        </transition>
       </v-container>
     </main>
   </v-app>  
@@ -91,3 +93,21 @@ export default {
   }
 }
 </script>
+
+<style>
+.fade-enter-active,
+.fade-leave-active {
+  transition-property: all;
+  transition-duration: 0.25s;
+}
+
+.fade-enter-active {
+  transition-delay: 0.25s;
+}
+
+.fade-enter,
+.fade-leave-active {
+  opacity: 0;
+  transform: translateX(-25px);
+}
+</style>
