@@ -5,8 +5,8 @@
   "main": "server.js",
   "scripts": {
     "server": "nodemon server.js",
-    "client": "cd client && npm start",
-    "dev": "concurrently --names \"server,client\" \"npm run server --silent\" \"npm run client --silent\""
+    "client": "cd client && yarn serve",
+    "dev": "concurrently --names \"server,client\" \"yarn server --silent\" \"yarn client --silent\""
   },
   "keywords": [],
   "author": "Jerome",
