@@ -18,6 +18,7 @@ mongoose
   .connect(process.env.MONGO_URI, { useNewUrlParser: true })
   .then(() => console.log('DB Connected!'))
   .catch(err => console.error(err));
+
 // Set userCreateIndex
 mongoose.set('useCreateIndex', true);
 
@@ -32,5 +33,5 @@ const server = new ApolloServer({
 });
 
 server.listen().then(({ url }) => {
-  console.log(`Server listening on ${url}`)
+  console.log(`Server listening on ${url}`);
 });
