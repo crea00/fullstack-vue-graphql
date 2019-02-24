@@ -1,5 +1,5 @@
 {
-  "name": "fullstack-vue-graphql",
+  "name": "vue-share",
   "version": "1.0.0",
   "description": "Starter for Full-Stack Vue-GraphQL-Apollo Projects",
   "main": "server.js",
