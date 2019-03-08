@@ -68,7 +68,7 @@ export default new Vuex.Store({
         })
         .then(({ data }) => {
           localStorage.setItem('token', data.signinUser.token);
-          // To make sure created method is run in main js (we run getCurrentUser), reload the page
+          // To make sure created method is run in main.js (we run getCurrentUser), reload the page
           router.go();    // just refresh the current page
         })
         .catch(err => {
