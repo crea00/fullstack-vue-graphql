@@ -88,6 +88,7 @@
 
 <script>
 import { mapGetters } from 'vuex';
+
 export default {
   name: 'App',
   data() {
@@ -108,7 +109,6 @@ export default {
           { icon: 'chat', title: 'Posts', link: '/posts' },
         ]
       }
-
       return items;
     },
     sideNavItems() {
