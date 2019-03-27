@@ -93,7 +93,7 @@
         <v-snackbar v-if='authError' v-model='authErrorSnackbar' color='info' :timeout='5000' bottom left>
           <v-icon class='mr-3'>cancel</v-icon>
           <h3>{{ authError.message }}</h3>
-          <v-btn dark flat to='/signin'>Signin</v-btn>
+          <v-btn dark flat to='/signin'>Sign in</v-btn>
         </v-snackbar>
 
       </v-container>
